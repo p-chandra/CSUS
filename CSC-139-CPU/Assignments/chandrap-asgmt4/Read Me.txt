@@ -1,0 +1,15 @@
+Compile:
+    gcc Assignment4.c
+
+run code:
+    ./a.out input1.txt FIFO
+    ./a.out input1.txt LRU
+    ./a.out input1.txt OPT
+
+Note:
+    Case sensitive and make sure to enter 3 arguments. 
+
+Note:
+    You can run.sh command and it will compile and execute FIFO LRU and OPT for you 
+	as long as the file input1.txt is in the directory. Use chmod 777 run.sh 
+	to give permission. Else run the original.
