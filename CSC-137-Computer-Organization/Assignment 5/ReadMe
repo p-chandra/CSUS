@@ -1,0 +1,33 @@
+the 0:6 array represents binary bits. Normally we use 8 bits or 0000 0000 or 7:0 but when converting ascii to hex we never use the 8th bit
+ so we end up using only 7 bits or 000 0000 or 6:0
+ 
+ 
+ Example:
+ P -> ascii to hex == 101 0000
+ 
+ The 0:13 array represents 14 letters in my name including 2 white space. If my name was tim lee then the total number in my name would be 8.
+ timlee = 6 + 2 white space. 
+ 
+ to spell my name PAWAN 
+
+Remember P = 101 0000
+the C[0] = the 1 bit and C[1] = the 2nd bit sooo ---> C[6]C[5]C[4]   C[3]C[2]C[1]C[0] = 000   0000
+
+
+So on C[4] and C[6] there is a Q[0] meaning   101 0000  
+
+
+module CoderMod(Q, C);
+   input  [0:13] Q;
+   output [6:0] C;
+
+   or(C[0],      Q[1],  Q[2], Q[3],             Q[6]);
+   or(C[1],             Q[2],      Q[4],        Q[6]);
+   or(C[2],             Q[2],      Q[4]);
+   or(C[3],                        Q[4]);
+   or(C[4], Q[0],       Q[2]);
+   or(C[5],                               Q[5]); 
+   or(C[6], Q[0], Q[1], Q[2], Q[3], Q[4],       Q[6]);
+
+endmodule
+ 
