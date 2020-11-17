@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html xml:lang="en" lang="en">
+<head>
+  <title>CSC 196V  Assignment 2</title>
+  <style>
+* { padding: 0; margin: 0; }
+
+body {
+  margin: 0 auto 0 auto;
+  padding: 0;
+  background-color: #33333f;
+  width: 840px;
+  font-family: "Avenir", "Avenir Next", Helvetica Neue, Arial;
+  font-size: 0.95em;
+}
+
+a, a:visited { text-decoration: none; color: #7533f4; }
+a:hover { text-decoration: underline; color: #f4b014; }
+img, a.img, a:hover.img { border: none; }
+
+img {
+  max-width: 800px;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #492a7c;
+  background-color: inherit;
+  font-weight: normal;
+  padding: 0 0 5px 0;
+  margin: 15px 0 0 0;
+  border: none;
+  clear: right;
+}
+h1 { font-size: 18pt; margin:  5px 0 10px 0; line-height: 28px; }
+h2 { font-size: 14pt; margin: 30px 0 15px 0; letter-spacing: 0.01em; border-bottom: 1px solid #ccc;  line-height: 20px;}
+h3 { font-size: 13pt; }
+h4 { font-size: 12pt; }
+h5 { font-size: 11pt; }
+p { margin: 0 0 10px 0; }
+hr { border: 0px; border-top: 1px solid #ccc; height: 0px; }
+ol { margin: 1em; }
+
+.content {
+  margin: 0;
+  padding: 15px 20px;
+  background-color: #ffffff;
+}
+
+.article {
+  line-height: 1.5em;
+}
+
+.entry  {
+  border-top: 1px solid #ddd;
+  padding-top: 2px;
+  margin-top: 3em;
+}
+  </style>
+</head>
+
+<body>
+<div class='content'>
+
+<section>
+  <h1>Assignment 2: Exploratory Data Analysis</h1>
+
+  <p>
+    <strong>Pawan Chandra</strong>
+  </p>
+</section>
+
+<section>
+  <h2>Dataset</h2>
+
+  <p>
+    <b>Plugin Hybrid and Electric Vehicles Sales in the United States.<br/>
+    </b>
+    This dataset contains sales number of both electric and hybrid vehicles accross United States from the year 
+    2011 - 2017. The dataset used is provided by the U.S. Department of Engergy. I'm interested in this topic because we
+    are moving away from gas powered vehicles slowly and the following graphs I produced is a reflection of
+    the rate U.S. is changing yearly.
+    <br> </br>
+    <b>Number of Electric Charging Stations</br>
+    </b>
+    A big factor when talking about electric vehicles are the number of charging stations across
+    and other fuel alternative. 
+  </p>
+
+  <p>
+    The data is available online at:
+    <strong></br>
+      <a href="https://afdc.energy.gov/data/">Alternative Fuel Data Center: PHEV + HV Sales</br></a>
+      <a href="https://afdc.energy.gov/stations/states">Alternative Fuel Data Center: Number of Stations</a>
+    </strong>
+  </p>
+</section>
+
+<section>
+  <h2>Initial Analysis Questions</h2>
+  <ol>
+    <li>How many charging stations are there in United States?</li>
+    <li>How many electric vehicles were sold in the last few years?</li>
+    <li>Which car manifacture produces the most model of electric vehicles?</li>
+    <li>Are there more plugin hybrid electric vehicles?</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Discoveries &amp; Insights</h2>
+    I am suprised to see the number of charging stations available in other states. Living in California, I 
+    see a lot of Tesla's and Nissan Leafs and had assumed that other states must have a lot of 
+    electric vehicles as well. The data provided by the government website was very
+    detailed and thorugh. 
+  <div class="entry">
+    <img src="Image7.png" />
+    <p class="caption">
+        Using the data to calculate the total number of stations, I 
+        determined which fuel alternatives are the most popular in United States. 
+        There are 7 popular fuel alternatives but only one that is the most popular. As you can tell, there is a big
+        difference between the top two options. Next we determine where all the electric charging stations are located.
+    </p>
+  </div>
+
+  <div class="entry">
+    <img src="Image8.png" />
+    <p class="caption">
+        Graph above shows the total number of electric charging stations in each state.
+        I used darker shades of red to format/show which state contains the most and least electric charging stations. California sticks out
+        the most having nearly four times more than the second higest state New York. Each charging station contains different amount of 
+        power outlets similar to gas stations.
+    </p>
+  </div>
+
+  <div class="entry">
+    <img src="Image9.png" />
+    <p class="caption">
+        Using the numbers above, we can determine the average number of outlets per station. 
+        For example, Texas contains an average of three outlets per station. The top five states
+        with the largest number of outlets are California, New York, Florida, Texas, and Washington.
+    </p>
+  </div>
+
+  <div class="entry">
+    <img src="Image10.png" />
+    <p class="caption">
+        Using the top five states from the prior graph, we can compare other fuel alternative sources by number of stations. Propane powered vehicles are more
+        popular in Texas than it is in California. Texas also has more E85 stations than any other state.
+        Again as you can tell from the bar grap above, California is pushing for more electric stations
+        than any other state. This graph also shows the demand of electric vehicles (EV) or plugin hybrid
+        electric vehicles (PHEV). 
+    </p>
+  </div>
+
+  <div class="entry">
+    <img src="Image1.png" />
+    <p class="caption">
+        This bar graph represents the sales of EV and PHEV from 2011 - 2019. In six
+        years, the sale of electric vehicles have eleven fold. The total number
+        of electric vehicles sold including plugin hybrids is 755,176.
+    </p>
+  </div>
+
+  <div class="entry">
+    <img src="Image2.png" />
+    <p class="caption">
+        In 2011 there were more electric vehicles sold than the plugin hybrid alternatives.
+        There were only two times within 2011 - 2017 where the sale of PHEV passed EV sales, 
+        2012 and 2013.
+    </p>
+  </div>
+
+  <div class="entry">
+    <img src="Image6.png" />
+    <p class="caption">
+        The top 3 electric vehicles sold in the United States are, Chevrolet Volt, Tesla Model S, and Nissan Leaf.
+        Both Nissan Leaf and Tesla Model S sold above 110,000 units and the Chevrolet Volt sold 133,512 units. 
+        Combining total sales for the top two EV units surpasses the top two PHEV sales.
+    </p>
+  </div>
+
+  <div class="entry">
+    <img src="Image4.png" />
+    <p class="caption">
+        Here we can see the total number of PHEV sales by make and model. Chevrolet sold the 
+        most unit of PHEV with 133,512 total sales. Coming far second, Toyota Prius Prime with 65,702 
+        units sold, nearly half of what Volt did. 
+        difference.
+    </p>
+  </div>
+
+  <div class="entry">
+    <img src="Image5.png" />
+    <p class="caption">
+        Tesla Model S sold 120,821 units and coming close second, Nissan Leaf with 114,808 units sold.
+        Third place goes to Tesla again with their Model X released in late 2015. In two
+        years, Tesla Model X sold 41,508 units which is very impressive. From the last graph
+        and this one, you can see that BMW makes the most electric vehicle.
+    </p>
+  </div>
+
+  <div class="entry">
+    <img src="Image3.png" />
+    <p class="caption">
+        BMW added many electric vehicles to their linup of cars. The graph above shows
+        their model name and sales number from 2011 - 2017. The model i3 sold the most with
+        30,997 units. Suprisingly coming second is the SUV X5. In total BMW sold 58,517 vehicles
+        in six years.
+    </p>
+  </div>
+
+  <div class="entry">
+    <h3>Summary</h3>
+    <p>
+        It is important to collect data when buying an electric car. You need to consider how many charging stations
+        are in your city and state. While electric vehicles still have a way to go, it definetly is the future
+        and as you can tell by the number of stations and total number of electric vehicles sold, companies
+        are investing big in this market. 
+    </p>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

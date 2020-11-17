@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<style type="text/css">
+
+/* On mouse hover, lighten state color */
+.path{
+	fill: none;
+	stroke: #a9a9a9;
+	stroke-width: 1;
+}
+path:hover {
+	fill-opacity: .7;
+	fill: yellow;
+}
+/* Style for Custom Tooltip */
+div.tooltip {   
+          
+	text-align: left;
+ 	height: 28px;                             
+	background: white;            
+	pointer-events: none;     
+	border:1px solid grey;
+	border-radius:4px;
+	font: Arial;
+	font-size:20px;
+	width:auto;
+	padding:4px;
+	color:black;
+	opacity:0;    
+}
+
+</style>
+</head>
+<body>
+<script type="text/javascript">
+
+//Width and height of map
+var width = 960;
+var height = 500;
+
+//D3 Projection
+var projection = d3.geo.albersUsa()
+				   .translate([width/2, height/2])    // translate to center of screen
+				   .scale([1000]);          // scale things down so see entire US
+        
+//Define path generator
+var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
+		  	 .projection(projection);  // tell path generator to use albersUsa projection
+
+//Create SVG element and append map to the SVG
+var svg = d3.select("body")
+			.append("svg")
+			.attr("width", width)
+			.attr("height", height);
+        
+//Append Div for tooltip to SVG
+var div = d3.select("body")
+		    .append("div")   
+    		.attr("class", "tooltip")               
+    		.style("opacity", 0);
+
+//Load in my states data!
+d3.csv("stateslived.csv", function(data) {
+	//Load GeoJSON data and merge with states data
+	d3.json("us-states.json", function(json) {
+
+	//Loop through each state data value in the .csv file
+	for (var i = 0; i < data.length; i++) {
+		
+		//Grab State Name
+		var dataState = data[i].State;
+		//Grab data value 
+		var dataBiodiesel = data[i].Biodiesel;
+		var dataCNG = data[i].CNG;
+		var dataE85 = data[i].E85;
+		var dataElectric = data[i].Electric;
+		var dataHY = data[i].HY;
+		var dataLNG = data[i].LNG;
+		var dataLPG = data[i].LPG;
+		var dataTOTAL = data[i].TOTAL;
+
+		//Find the corresponding state inside the GeoJSON
+		for (var j = 0; j < json.features.length; j++)  {
+			var jsonState = json.features[j].properties.name;
+
+			if (dataState == jsonState) {
+				// Copy the data value into the JSON
+				json.features[j].properties.Biodiesel = dataBiodiesel;
+				json.features[j].properties.CNG = dataCNG;
+				json.features[j].properties.E85 = dataE85;
+				json.features[j].properties.Electric = dataElectric;
+				json.features[j].properties.HY = dataHY;
+				json.features[j].properties.LNG = dataLNG;
+				json.features[j].properties.LPG = dataLPG;
+				json.features[j].properties.TOTAL = dataTOTAL;
+				//Stop looking through the JSON
+				break;
+			}
+		}
+	}
+		
+	//Bind the data to the SVG and create one path per GeoJSON feature
+	svg.selectAll("path")
+		.data(json.features)
+		 .enter().append("path")
+		 .attr("d", path)
+		.style("stroke", "#fff")
+		.style("stroke-width", "1")
+		
+	d3.csv("stateslived2.csv", function(data) {
+		svg.selectAll("path")
+		.data(data)
+		.on("mouseover", function(d) {     
+    		div.transition()        
+				.duration(200)
+           		.style("opacity", .9);   
+			div.text("State: " + d.State + " || "
+					+ "Biodiesel: " + d.Biodiesel + " || " 
+					+ "CNG: " + d.CNG + " || " 
+					+ "E85: " + d.E85 + " || "
+					+ "Electric: " + d.Electric + " || "
+					+ "HY: " + d.HY + " || "
+					+ "LNG: " + d.LNG + " || "
+					+ "LPG: " + d.LPG + " || "
+					+ "Total: " + d.TOTAL + " ")
+           	.style("left", (d3.event.pageX) + "px")     
+           	.style("top", (d3.event.pageY - 28) + "px"); 
+		})   
+    	.on("mouseout", function(d) {       
+        	div.transition()        
+           	.duration(500)      
+           	.style("opacity", 0);   
+    	});
+	});  
+});
+});
+</script>
+<h2>Alternative Fuel Stations in the US</h2>
+<h3>	Legend:</h3>
+<ul>
+<li>Biodiesel – B20 and above </li>
+<li>CNG – Compressed Natural Gas </li>
+<li>E85 – Ethanol Flex Fuel </li>
+<li>Electric – Electric Vehicle Supply Equipment (EVSE)</li>
+<li>HY – Hydrogen </li>
+<li>LNG – Liquefied Natural Gas </li>
+<li>LPG – Liquefied Petroleum Gas </li>
+</ul>
+</body>
+</html>
