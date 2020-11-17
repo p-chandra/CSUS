@@ -1,0 +1,24 @@
+git config user.name "UserName in quotes"
+
+git config user.email email.com
+
+git clone pasteurl
+
+git add Demo.txt
+
+git status
+
+git commit -m "Comment" Demo.txt
+
+git push -u origin master
+
+git rm -r demo.txt
+
+git status
+
+git commit -m "Removal"
+
+git push origin master
+
+|-------------- How to create+format README txt on git hub -------------|
+https://daringfireball.net/projects/markdown/basics
