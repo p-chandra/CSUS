@@ -1,0 +1,19 @@
+round_hash.c takes a 64bit unsigned integer 
+  - converts it to little endian 
+  - goes through multiple algorithms 
+  - swaps back to big endian 
+  - and displays the new hex code
+  
+  
+encrypt.c must have the openssl library
+  -to compile you type gcc -lcrypto hw1_openssl_encrypt.c -o encrypt
+  -to execute encrypt abc123 input.txt out.bin
+  -the file uses a key (abc123) and a random IV to encrypt contents of the input.txt and writes it in out.bin
+  
+decrypt.c must have the openssl library
+  -to compile you type gcc -lcrypto hw1_openssl_decrypt.c -o decrypt
+  -to execute decrypt abc123 out.bin output.txt
+  -the file uses a key (abc123) and reads the IV from the encrypted file (out.bin) to decypher the encrypted contents
+  -the decrypted contents is then written to output.txt
+  
+ 

